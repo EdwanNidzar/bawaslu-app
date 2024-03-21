@@ -17,12 +17,13 @@
       <div class="row">
         <div class="col-lg-6 col-6">
           <div class="small-box bg-info">
-            <div class="inner">@php
-              $totalPelanggaran = 0;
-              foreach ($parpols as $data) {
-                  $totalPelanggaran = $data->total_pelanggaran;
-              }
-            @endphp <h3>{{ $totalPelanggaran }}</h3>
+            <div class="inner">
+              @php
+                $totalPelanggaran = 0;
+                foreach ($parpols as $data) {
+                    $totalPelanggaran += $data->jumlah_pelanggaran;
+                }
+              @endphp <h3>{{ $totalPelanggaran }}</h3>
               <p>Pelanggaran Partai Politik</p>
             </div>
             <div class="icon"><i class="ion ion-stats-bars"></i></div><a href="#" class="small-box-footer">More info
@@ -31,12 +32,13 @@
         </div>
         <div class="col-lg-6 col-6">
           <div class="small-box bg-secondary">
-            <div class="inner">@php
-              $totalPelanggaran = 0;
-              foreach ($jenis_pelanggaran as $data) {
-                  $totalPelanggaran += $data->jumlah_pelanggaran;
-              }
-            @endphp <h3>{{ $totalPelanggaran }}</h3>
+            <div class="inner">
+              @php
+                $totalPelanggaran = 0;
+                foreach ($jenis_pelanggaran as $data) {
+                    $totalPelanggaran += $data->jumlah_pelanggaran;
+                }
+              @endphp <h3>{{ $totalPelanggaran }}</h3>
               <p>Pelanggaran Berdasarkan Jenis</p>
             </div>
             <div class="icon"><i class="ion ion-stats-bars"></i></div><a href="#" class="small-box-footer">More

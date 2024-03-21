@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ParpolsController;
+use App\Http\Controllers\JenisPelanggaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,10 @@ Route::middleware('auth')->group(function () {
 Route::resource('parpols', ParpolsController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi']);
 Route::get('/parpols/{id}/pelanggaran', [ParpolsController::class, 'pelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi'])->name('parpols.pelanggaran');
 
+/*
+    ROUTE UNTUK JENIS PELANGARAN
+*/
+Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi']);
+Route::get('/jenispelanggaran/{id}/pelanggaran', [JenisPelanggaranController::class, 'pelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi'])->name('jenispelanggaran.pelanggaran');
+    
 require __DIR__.'/auth.php';

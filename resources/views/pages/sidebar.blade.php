@@ -44,7 +44,8 @@
         @endif
         @if (auth()->user()->hasRole('bawaslu-provinsi'))
           <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('jenispelanggaran.index') ? 'active' : '' }}">
+            <a href="{{ route('jenispelanggaran.index') }}"
+              class="nav-link {{ request()->routeIs('jenispelanggaran.index') ? 'active' : '' }}">
               <i class="bi bi-list-ul me-2"></i>
               <p>
                 Jenis Pelanggaran
