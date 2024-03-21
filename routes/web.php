@@ -8,6 +8,7 @@ use App\Http\Controllers\JenisPelanggaranController;
 use App\Http\Controllers\SuratKerjaController;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,9 +61,25 @@ Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth'
 Route::resource('laporan', LaporanController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])
     ->name('laporan.verify')
-    ->middleware(['auth', 'role:bawaslu-kota']);
+    ->middleware(['auth', 'verified', 'role:bawaslu-kota']);
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])
     ->name('laporan.reject')
-    ->middleware(['auth', 'role:bawaslu-kota']);
+    ->middleware(['auth', 'verified', 'role:bawaslu-kota']);
+
+/*
+    ROUTE UNTUK USER
+*/
+Route::get('/users', [UsersController::class, 'index'])
+    ->name('users.index')
+    ->middleware(['auth', 'role:bawaslu-provinsi']);
+Route::patch('/users/{id}/makeProvinsi', [UsersController::class, 'makeProvinsi'])
+    ->name('users.makeProvinsi')
+    ->middleware(['auth', 'role:bawaslu-provinsi']);
+Route::patch('/users/{id}/makeKota', [UsersController::class, 'makeKota'])
+    ->name('users.makeKota')
+    ->middleware(['auth', 'role:bawaslu-provinsi']);
+Route::patch('/users/{id}/makePanwascam', [UsersController::class, 'makePanwascam'])
+    ->name('users.makePanwascam')
+    ->middleware(['auth', 'role:bawaslu-provinsi']);
 
 require __DIR__.'/auth.php';

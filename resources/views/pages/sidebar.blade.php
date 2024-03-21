@@ -98,7 +98,8 @@
 
         @if (auth()->user()->hasRole('bawaslu-provinsi'))
           <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
+            <a href="{{ route('users.index') }}"
+              class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
               <i class="bi bi-list-ul me-2"></i>
               <p>
                 List Users
