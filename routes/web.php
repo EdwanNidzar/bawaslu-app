@@ -7,6 +7,7 @@ use App\Http\Controllers\ParpolsController;
 use App\Http\Controllers\JenisPelanggaranController;
 use App\Http\Controllers\SuratKerjaController;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,16 @@ Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','
     ROUTE UNTUK PELANGGARAN
 */
 Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+
+/*
+    ROUTE UNTUK LAPORAN
+*/
+Route::resource('laporan', LaporanController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])
+    ->name('laporan.verify')
+    ->middleware(['auth', 'role:bawaslu-kota']);
+Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])
+    ->name('laporan.reject')
+    ->middleware(['auth', 'role:bawaslu-kota']);
 
 require __DIR__.'/auth.php';

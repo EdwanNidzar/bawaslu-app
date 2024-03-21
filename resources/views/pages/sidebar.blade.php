@@ -86,7 +86,8 @@
                 auth()->user()->hasRole('bawaslu-kota') ||
                 auth()->user()->hasRole('panwascam'))
           <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('laporan.index') ? 'active' : '' }}">
+            <a href="{{ route('laporan.index') }}"
+              class="nav-link {{ request()->routeIs('laporan.index') ? 'active' : '' }}">
               <i class="bi bi-list-ul me-2"></i>
               <p>
                 Laporan Pelanggaran
