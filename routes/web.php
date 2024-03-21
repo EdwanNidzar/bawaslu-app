@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ParpolsController;
 use App\Http\Controllers\JenisPelanggaranController;
+use App\Http\Controllers\SuratKerjaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +41,10 @@ Route::get('/parpols/{id}/pelanggaran', [ParpolsController::class, 'pelanggaran'
 */
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi']);
 Route::get('/jenispelanggaran/{id}/pelanggaran', [JenisPelanggaranController::class, 'pelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi'])->name('jenispelanggaran.pelanggaran');
-    
+  
+/*
+    ROUTE UNTUK SURAT KERJA
+*/
+Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+
 require __DIR__.'/auth.php';
