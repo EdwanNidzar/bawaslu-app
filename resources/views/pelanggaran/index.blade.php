@@ -42,7 +42,8 @@
       <div class="card-body">
         <a href="{{ route('pelanggaran.create') }}" type="button" class="btn btn-primary mb-3"><i
             class="bi bi-plus"></i></a>
-        <a href="#" target="_blank" type="button" class="btn btn-success mb-3"><i class="bi bi-printer"></i></a>
+        <a href="{{ route('cetakPelanggaran') }}" target="_blank" type="button" class="btn btn-success mb-3"><i
+            class="bi bi-printer"></i></a>
         <table id="pelanggaran" class="table table-bordered  table-striped mb-3">
           <thead>
             <tr align="center">
@@ -75,8 +76,8 @@
                 <td>
                   <a href="{{ route('pelanggaran.show', $data->pelanggaran_id) }}"> <button class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></button></a>
-                  <a href="#" target="_blank" type="button" class="btn btn-success m-2"><i
-                      class="bi bi-printer"></i></a>
+                  <a href="{{ route('cetakPelanggaranById', $data->pelanggaran_id) }}" target="_blank" type="button"
+                    class="btn btn-success m-2"><i class="bi bi-printer"></i></a>
                   <a href="{{ route('pelanggaran.edit', $data->pelanggaran_id) }}"> <button
                       class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button></a>
                   <form action="{{ route('pelanggaran.destroy', $data->pelanggaran_id) }}" method="POST"

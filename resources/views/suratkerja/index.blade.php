@@ -51,7 +51,8 @@
       <div class="card-body">
         <a href="{{ route('suratkerja.create') }}" type="button" class="btn btn-primary mb-3"><i
             class="bi bi-plus"></i></a>
-        <a href="#" target="_blank" type="button" class="btn btn-success mb-3"><i class="bi bi-printer"></i></a>
+        <a href="{{ route('cetakSuratKerja') }}" target="_blank" type="button" class="btn btn-success mb-3"><i
+            class="bi bi-printer"></i></a>
         <table id="suratkerja" class="table table-bordered  table-striped mb-3">
           <thead>
             <tr align="center">
@@ -72,9 +73,10 @@
                 <td>
                   <a href="{{ route('suratkerja.show', $data->surat_kerja_id) }}"> <button class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></button></a>
-                  <a href="#"> <button class="btn btn-success m-2"><i class="bi bi-printer"></i></button></a>
-                  <a href="{{ route('suratkerja.edit', $data->surat_kerja_id) }}"> <button
-                      class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button></a>
+                  <a href="{{ route('cetakSuratKerjaById', $data->surat_kerja_id) }}" target="_blank" type="button"
+                    class="btn btn-success m-2"><i class="bi bi-printer"></i></a>
+                  <a href="{{ route('suratkerja.edit', $data->surat_kerja_id) }}"> <button class="btn btn-secondary m-2"
+                      target="_blank"><i class="bi bi-pencil-square"></i></button></a>
                   <form action="{{ route('suratkerja.destroy', $data->surat_kerja_id) }}" method="POST"
                     onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
                     @csrf

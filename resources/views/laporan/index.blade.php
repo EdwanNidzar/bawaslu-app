@@ -50,7 +50,8 @@
 
       <div class="card-body">
         <a href="{{ route('laporan.create') }}" type="button" class="btn btn-primary mb-3"><i class="bi bi-plus"></i></a>
-        <a href="#" target="_blank" type="button" class="btn btn-success mb-3"><i class="bi bi-printer"></i></a>
+        <a href="{{ route('cetakLaporanPelanggaran') }}" target="_blank" type="button" class="btn btn-success mb-3"><i
+            class="bi bi-printer"></i></a>
         <table id="laporan" class="table table-bordered table-striped mb-3">
           <thead>
             <tr align="center">
@@ -83,7 +84,10 @@
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ route('laporan.show', $data->laporan_id) }}" class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></a>
-                    <a href="#" target="_blank" class="btn btn-success m-2"><i class="bi bi-printer"></i></a>
+                    @if ($data->status != 0)
+                      <a href="{{ route('cetakLaporanPelanggaranById', $data->laporan_id) }}" target="_blank"
+                        class="btn btn-success m-2"><i class="bi bi-printer"></i></a>
+                    @endif
                     @if (auth()->user()->hasRole('bawaslu-kota'))
                       @if ($data->status == 0)
                         <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"

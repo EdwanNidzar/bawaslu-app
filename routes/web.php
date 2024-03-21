@@ -9,6 +9,7 @@ use App\Http\Controllers\SuratKerjaController;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,22 +39,30 @@ Route::middleware('auth')->group(function () {
 */
 Route::resource('parpols', ParpolsController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi']);
 Route::get('/parpols/{id}/pelanggaran', [ParpolsController::class, 'pelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi'])->name('parpols.pelanggaran');
+Route::get('/cetakParpols', [PDFController::class, 'cetakParpols'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakParpols');
+Route::get('/cetakParpolsById/{id}', [PDFController::class, 'cetakParpolsById'])->name('cetakParpolsById');
 
 /*
     ROUTE UNTUK JENIS PELANGARAN
 */
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi']);
 Route::get('/jenispelanggaran/{id}/pelanggaran', [JenisPelanggaranController::class, 'pelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi'])->name('jenispelanggaran.pelanggaran');
-  
+Route::get('/cetakJenisPelanggaran', [PDFController::class, 'cetakJenisPelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakJenisPelanggaran');
+Route::get('/cetakJenisPelanggaranById/{id}', [PDFController::class, 'cetakJenisPelanggaranById'])->name('cetakJenisPelanggaranById');
+
 /*
     ROUTE UNTUK SURAT KERJA
 */
 Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+Route::get('/cetakSuratKerja', [PDFController::class, 'cetakSuratKerja'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakSuratKerja');
+Route::get('/cetakSuratKerjaById/{id}', [PDFController::class, 'cetakSuratKerjaById'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakSuratKerjaById');
 
 /*
     ROUTE UNTUK PELANGGARAN
 */
 Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+Route::get('/cetakPelanggaran', [PDFController::class, 'cetakPelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakPelanggaran');
+Route::get('/cetakPelanggaranById/{id}', [PDFController::class, 'cetakPelanggaranById'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakPelanggaranById');
 
 /*
     ROUTE UNTUK LAPORAN
@@ -65,6 +74,8 @@ Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])
     ->name('laporan.reject')
     ->middleware(['auth', 'verified', 'role:bawaslu-kota']);
+Route::get('/cetakLaporanPelanggaran', [PDFController::class, 'cetakLaporanPelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakLaporanPelanggaran');
+Route::get('/cetakLaporanPelanggaranById/{id}', [PDFController::class, 'cetakLaporanPelanggaranById'])->middleware(['auth','verified', 'role:bawaslu-provinsi|bawaslu-kota|panwascam'])->name('cetakLaporanPelanggaranById');
 
 /*
     ROUTE UNTUK USER

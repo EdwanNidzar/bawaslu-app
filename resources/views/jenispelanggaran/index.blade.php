@@ -51,7 +51,8 @@
       <div class="card-body">
         <a href="{{ route('jenispelanggaran.create') }}" type="button" class="btn btn-primary mb-3"><i
             class="bi bi-plus"></i></a>
-        <a href="#" target="_blank" type="button" class="btn btn-success mb-3"><i class="bi bi-printer"></i></a>
+        <a href="{{ route('cetakJenisPelanggaran') }}" target="_blank" type="button" class="btn btn-success mb-3"><i
+            class="bi bi-printer"></i></a>
         <table id="jenispelanggaran" class="table table-bordered  table-striped mb-3">
           <thead>
             <tr align="center">
@@ -81,8 +82,8 @@
                       class="btn btn-light m-2"><i class="bi bi-eye-fill"></i></button></a>
                   <a href="{{ route('jenispelanggaran.pelanggaran', $data->id_jenis_pelanggaran) }}"> <button
                       class="btn btn-info m-2"><i class="bi bi-eye-fill"></i></button></a>
-                  <a href="#" target="_blank" type="button" class="btn btn-success m-2"><i
-                      class="bi bi-printer"></i></a>
+                  <a href="{{ route('cetakJenisPelanggaranById', $data->id_jenis_pelanggaran) }}" target="_blank"
+                    type="button" class="btn btn-success m-2"><i class="bi bi-printer"></i></a>
                 </td>
               </tr>
             @endforeach
