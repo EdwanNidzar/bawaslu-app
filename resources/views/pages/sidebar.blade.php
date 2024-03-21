@@ -72,7 +72,8 @@
                 auth()->user()->hasRole('bawaslu-kota') ||
                 auth()->user()->hasRole('panwascam'))
           <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('pelanggaran.index') ? 'active' : '' }}">
+            <a href="{{ route('pelanggaran.index') }}"
+              class="nav-link {{ request()->routeIs('pelanggaran.index') ? 'active' : '' }}">
               <i class="bi bi-list-ul me-2"></i>
               <p>
                 Pelanggaran
