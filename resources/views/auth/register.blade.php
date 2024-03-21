@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="{{ asset('dist/img/logo-bawaslu.png') }}">
+<title>BAWASLU</title>
 <x-guest-layout>
   <form method="POST" action="{{ route('register') }}">
     @csrf
