@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ParpolsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+/*
+    ROUTE UNTUK PARPOLS 
+*/
+Route::resource('parpols', ParpolsController::class)->middleware(['auth','verified', 'role:bawaslu-provinsi']);
+Route::get('/parpols/{id}/pelanggaran', [ParpolsController::class, 'pelanggaran'])->middleware(['auth','verified', 'role:bawaslu-provinsi'])->name('parpols.pelanggaran');
 
 require __DIR__.'/auth.php';

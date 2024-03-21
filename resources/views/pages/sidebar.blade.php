@@ -33,7 +33,8 @@
         <li class="nav-header">TABLE</li>
         @if (auth()->user()->hasRole('bawaslu-provinsi'))
           <li class="nav-item">
-            <a href="#" class="nav-link {{ request()->routeIs('parpols.index') ? 'active' : '' }}">
+            <a href="{{ route('parpols.index') }}"
+              class="nav-link {{ request()->routeIs('parpols.index') ? 'active' : '' }}">
               <i class="bi bi-list-ul me-2"></i>
               <p>
                 Partai Politik
